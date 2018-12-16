@@ -6,13 +6,17 @@
 import random
 
 
+# Determines if a given value (x) is in fact an integer and if so returns it, otherwise returns False and
+# notifies the user of the error.
 def is_num(x):
     try:
         return int(x)
     except ValueError:
+        print(str(x) + " is not an integer. Please try again.")
         return False
 
 
+# Compares a given value against a comparison input and returns -1 if too low, 1 if too high, and 0 if just right.
 def compare_number(val, comp):
     if comp < val:
         return -1
@@ -22,43 +26,26 @@ def compare_number(val, comp):
         return 0
 
 
-def check_input(argx):
-    if argx is not int:
-        return -1
-    else:
-        return 1
+# This function servers to receive and call verification on user input for upper and lower bounds of the game.
+def get_bound():
+    while True:
+        bound = is_num(input("Choose a number: "))
+        if bound is not False:
+            print("Bound saved. " + str(bound))
+            return int(bound)
 
 
-def get_lower():
-    num = False
-    while num is False:
-        lower_bound = is_num(input("Choose a minimum number: "))
-        if lower_bound is not False:
-            print("Lower bound saved. " + str(lower_bound))
-            return int(lower_bound)
-
-
-def get_upper():
-    num = False
-    while num:
-        upper_bound = is_num(input("Choose a maximum number: "))
-    print("Upper bound saved. " + str(upper_bound))
-    return int(upper_bound) # Convert to lower and test
-
-
+# This function serves to get the users guessed value
 def get_guess(lower, upper):
-    get_value = True
-    while get_value:
-        user_guess = input("Please guess a number between " + str(lower) + " and " + str(upper) + ":")
-        if check_input(user_guess) == 1:
+    while True:
+        user_guess = is_num(input("Please guess a number between " + str(lower) + " and " + str(upper) + ": "))
+        if user_guess is not False:
             return user_guess
-        else:
-            print("Invalid input... Try again with an integer number.")
 
 
 def main():
-    lower = get_lower()
-    upper = get_upper()
+    lower = get_bound()
+    upper = get_bound()
     rand = random.randint(lower, upper)
     user_correct = False
     while user_correct is not True:
@@ -74,5 +61,4 @@ def main():
     quit(0)
 
 
-while True:
-    main()
+main()
