@@ -48,15 +48,20 @@ def main():
     upper = get_bound()
     rand = random.randint(lower, upper)
     user_correct = False
+    user_guess_count = 0
     while user_correct is not True:
         guess = get_guess(lower, upper)
         compare = compare_number(rand, guess)
         if compare == -1:
             print("Too low... Try again!")
+            user_guess_count += 1
         elif compare == 1:
             print("Too high... Try again!")
+            user_guess_count += 1
         else:
             print("Good job! You guessed the number!")
+            user_guess_count += 1
+            print("It took you " + str(user_guess_count) + " attempts to guess the correct number!")
             user_correct = True
     quit(0)
 
