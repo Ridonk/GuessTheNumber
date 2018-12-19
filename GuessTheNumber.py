@@ -26,7 +26,7 @@ def compare_number(val, comp):
         return 0
 
 
-# This function servers to receive and call verification on user input for upper and lower bounds of the game.
+# This function serves to receive and call verification on user input for upper and lower bounds of the game.
 def get_bound():
     while True:
         bound = is_num(input("Choose a number: "))
