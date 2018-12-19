@@ -63,7 +63,12 @@ def main():
             user_guess_count += 1
             print("It took you " + str(user_guess_count) + " attempts to guess the correct number!")
             user_correct = True
-    quit(0)
+    while True:
+        user_quit = input("Continue? (y/n)")
+        if user_quit == 'y':
+            main()
+        elif user_quit == 'n':
+            quit()
 
 
 main()
